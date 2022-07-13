@@ -40,7 +40,11 @@ func main() {
 		logger.Log(
 			logging.Entry{
 				Severity: logging.Info,
-				Payload:  map[string]interface{}{"Duration": duration.Seconds()},
+				Payload: map[string]interface{}{
+					"Duration": duration.Seconds(),
+					"RemoteIP": c.RemoteIP(),
+					"Service":  os.Getenv("K_REVISION"),
+				},
 			})
 		c.JSON(http.StatusOK, gin.H{})
 	})
