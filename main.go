@@ -42,7 +42,7 @@ func main() {
 				Severity: logging.Info,
 				Payload: map[string]interface{}{
 					"duration":         duration.Seconds(),
-					"remote_ip":        c.RemoteIP(),
+					"client_ip":        c.Request.Header.Get("X-Forwarded-For"),
 					"service_revision": os.Getenv("K_REVISION"),
 				},
 			})
