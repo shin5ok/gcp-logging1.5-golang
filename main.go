@@ -7,6 +7,8 @@ import (
 	"os"
 	"time"
 
+	"net/http"
+
 	logging "cloud.google.com/go/logging"
 	"github.com/gin-gonic/gin"
 )
@@ -40,7 +42,7 @@ func main() {
 				Severity: logging.Info,
 				Payload:  map[string]interface{}{"Duration": duration.Seconds()},
 			})
-		c.JSON(200, gin.H{})
+		c.JSON(http.StatusOK, gin.H{})
 	})
 
 	g.Run(":8080")
