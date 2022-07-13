@@ -1,0 +1,1 @@
+gcloud run deploy --source=. gcp-logging --region=asia-northeast1
