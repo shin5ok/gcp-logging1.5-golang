@@ -1,1 +1,1 @@
-gcloud run deploy --source=. gcp-logging --region=asia-northeast1
+gcloud run deploy --source=. --allow-unauthenticated --region=asia-northeast1 gcp-logging 
