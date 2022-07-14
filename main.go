@@ -44,6 +44,9 @@ func main() {
 					"duration":         duration.Seconds(),
 					"client_ip":        c.Request.Header.Get("X-Forwarded-For"),
 					"service_revision": os.Getenv("K_REVISION"),
+					"accept":           c.Request.Header.Get("Accept"),
+					"method":           c.Request.Method,
+					"host":             c.Request.Host,
 				},
 			})
 		c.JSON(http.StatusOK, gin.H{})
