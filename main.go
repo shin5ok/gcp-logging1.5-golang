@@ -30,7 +30,7 @@ func main() {
 
 	g := gin.Default()
 
-	g.GET("/api", func(c *gin.Context) {
+	g.GET("/", func(c *gin.Context) {
 		start := time.Now()
 		rand.Seed(time.Now().UnixNano())
 		n := rand.Intn(100)
