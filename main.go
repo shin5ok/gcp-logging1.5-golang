@@ -47,6 +47,7 @@ func main() {
 					"accept":           c.Request.Header.Get("Accept"),
 					"method":           c.Request.Method,
 					"host":             c.Request.Host,
+					"misc":             "test",
 				},
 			})
 		c.JSON(http.StatusOK, gin.H{})
