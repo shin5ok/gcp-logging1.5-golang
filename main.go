@@ -29,9 +29,12 @@ func main() {
 	logger := client.Logger(appName, logging.RedirectAsJSON(os.Stderr))
 
 	g := gin.Default()
+	appRouter := g.Group("/api")
 
-	// TODO: Logging handler should be as gin.middleware
-	g.GET("/", func(c *gin.Context) {
+	/*
+	 TODO: Logging handler should be as gin.middleware
+	*/
+	appRouter.GET("/", func(c *gin.Context) {
 		start := time.Now()
 		rand.Seed(time.Now().UnixNano())
 		n := rand.Intn(100)
@@ -65,7 +68,7 @@ func main() {
 		Misc            string `json:"misc"`
 		Path            string `json:"path"`
 	}
-	g.GET("/test", func(c *gin.Context) {
+	appRouter.GET("/test", func(c *gin.Context) {
 		logger.Log(
 			logging.Entry{
 				Severity: logging.Warning,
