@@ -14,14 +14,14 @@ import (
 )
 
 var (
-	appName = "tiny-api"
+	appName   = "tiny-api"
+	projectID = os.Getenv("GOOGLE_CLOUD_PROJECT")
 )
 
 func main() {
 
 	ctx := context.Background()
 
-	projectID := os.Getenv("GOOGLE_CLOUD_PROJECT")
 	client, err := logging.NewClient(ctx, projectID)
 	if err != nil {
 		log.Fatalf("Failed to create client: %v", err)
