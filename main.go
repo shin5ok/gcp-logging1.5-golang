@@ -48,6 +48,35 @@ func main() {
 					"method":           c.Request.Method,
 					"host":             c.Request.Host,
 					"misc":             "test",
+					"path":             c.Request.URL.Path,
+				},
+			})
+		c.JSON(http.StatusOK, gin.H{})
+	})
+
+	type LogStruct struct {
+		Duration        string `json:"duration"`
+		ClientIp        string `json:"client_ip"`
+		ServiceRevision string `json:"service_revision"`
+		Accept          string `json:"accept"`
+		Method          string `json:"method"`
+		Host            string `json:"host"`
+		Misc            string `json:"misc"`
+		Path            string `json:"path"`
+	}
+	g.GET("/test", func(c *gin.Context) {
+		logger.Log(
+			logging.Entry{
+				Severity: logging.Warning,
+				Payload: LogStruct{
+					Duration:        "",
+					ClientIp:        c.Request.Header.Get("X-Forwarded-For"),
+					ServiceRevision: os.Getenv("K_REVISION"),
+					Accept:          c.Request.Header.Get("Accept"),
+					Method:          c.Request.Method,
+					Host:            c.Request.Host,
+					Misc:            "test",
+					Path:            c.Request.URL.Path,
 				},
 			})
 		c.JSON(http.StatusOK, gin.H{})
