@@ -30,6 +30,7 @@ func main() {
 
 	g := gin.Default()
 
+	// TODO: Logging handler should be as gin.middleware
 	g.GET("/", func(c *gin.Context) {
 		start := time.Now()
 		rand.Seed(time.Now().UnixNano())
@@ -82,5 +83,10 @@ func main() {
 		c.JSON(http.StatusOK, gin.H{})
 	})
 
-	g.Run(":8080")
+	var listenPort = os.Getenv("PORT")
+	if listenPort == "" {
+		listenPort = "8080"
+	}
+
+	g.Run(":" + listenPort)
 }
