@@ -54,6 +54,9 @@ func main() {
 					"misc":             "test",
 					"path":             c.Request.URL.Path,
 				},
+				HTTPRequest: &logging.HTTPRequest{
+					Request: c.Request,
+				},
 			})
 		c.JSON(http.StatusOK, gin.H{})
 	})
@@ -81,6 +84,9 @@ func main() {
 					Host:            c.Request.Host,
 					Misc:            "test",
 					Path:            c.Request.URL.Path,
+				},
+				HTTPRequest: &logging.HTTPRequest{
+					Request: c.Request,
 				},
 			})
 		c.JSON(http.StatusOK, gin.H{})
